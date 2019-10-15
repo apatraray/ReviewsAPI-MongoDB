@@ -1,5 +1,6 @@
 package com.udacity.course3.reviews.domain.reviews;
 
+import com.udacity.course3.reviews.domain.products.Products;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -24,4 +25,6 @@ public interface ReviewsRepository  extends JpaRepository<Reviews, Integer> {
 
     @Query("select r.commentId, r.productId, r.id from Reviews r where r.productId=:productId")
     List<Integer> findCommentsForProduct(Integer productId);
+
+    Reviews findByProductId(int i);
 }

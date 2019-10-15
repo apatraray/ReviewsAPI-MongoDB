@@ -15,20 +15,20 @@ public class ProductsTest {
         EntityManager em = factory.createEntityManager();
         em.getTransaction().begin();
 
-        Products product1 = new Products();
+        Products product = new Products();
  //       product1.setID(1);
-        product1.setProductName("smart watches");
-        product1.setPrice("$199");
+        product.setProductName("smart watches");
+        product.setPrice("$199");
 
-        em.persist(product1);
+        em.persist(product);
 
-        System.err.println("product id "+ product1.getID());
+        System.err.println("product id "+ product.getID());
 
         em.getTransaction().commit();
 
         em.close();
 
-        readProduct(product1.getID(), factory);
+        readProduct(product.getID(), factory);
         factory.close();
     }
 

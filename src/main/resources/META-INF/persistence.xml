@@ -13,4 +13,26 @@
             <property name="javax.persistence.jdbc.password" value="HelloWorld"/>
         </properties>
     </persistence-unit>
+
+    <persistence-unit name="Reviews" transaction-type="RESOURCE_LOCAL">
+        <description>JPA Test</description>
+        <class>com.udacity.course3.reviews.domain.reviews.Reviews</class>
+        <properties>
+            <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/jdnd_c3?serverTimezone=PST"/>
+            <property name="javax.persistence.jdbc.user" value="root"/>
+            <property name="javax.persistence.jdbc.password" value="HelloWorld"/>
+        </properties>
+    </persistence-unit>
+
+    <persistence-unit name="Comments" transaction-type="RESOURCE_LOCAL">
+        <description>JPA Test</description>
+        <class>com.udacity.course3.reviews.domain.comments.Comments</class>
+        <properties>
+            <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/jdnd_c3?serverTimezone=PST"/>
+            <property name="javax.persistence.jdbc.user" value="root"/>
+            <property name="javax.persistence.jdbc.password" value="HelloWorld"/>
+        </properties>
+    </persistence-unit>
 </persistence>

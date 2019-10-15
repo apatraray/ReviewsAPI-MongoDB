@@ -71,14 +71,6 @@ public class ReviewsApplication {
 			comment4.setCommentDetail("kids get more involved");
 			comment4 = cRepository.save(comment4);
 			rRepository.updateReviewForComment(product2.getID(), comment4.getId());
-
-			System.err.println("comment1: " + comment1);
-			System.err.println("comment2: " + comment2);
-			System.err.println("comment3: " + comment3);
-			System.err.println("comment4: " + comment4);
-
-			System.err.println("review1: " + review1);
-			System.err.println("review2: " + review2);
 		};
 	}
 
