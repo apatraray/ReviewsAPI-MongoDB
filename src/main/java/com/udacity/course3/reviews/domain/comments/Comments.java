@@ -1,5 +1,9 @@
 package com.udacity.course3.reviews.domain.comments;
 
+import com.udacity.course3.reviews.domain.products.Products;
+import com.udacity.course3.reviews.domain.reviews.Reviews;
+//import com.udacity.course3.reviews.domain.reviews.Reviews;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -16,6 +20,9 @@ public class Comments implements Serializable
 
     @Column(name="comment_detail")
     private String commentDetail;
+
+    public Comments() {
+    }
 
     public Integer getId() {
         return id;
@@ -38,9 +45,6 @@ public class Comments implements Serializable
 
     public void setCommentDetail(String commentDetail) {
         this.commentDetail = commentDetail;
-    }
-
-    public Comments() {
     }
 
     public Comments(String commentType, String commentDetail) {

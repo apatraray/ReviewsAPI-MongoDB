@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.HttpServerErrorException;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -41,11 +42,12 @@ public class ReviewsController {
      * @return The created review or 404 if product id is not found.
      */
     @RequestMapping(value = "/reviews/products/{productId}", method = RequestMethod.POST)
-    public ResponseEntity<?> createReviewForProduct(@PathVariable("productId") Integer productId) {
+    public ResponseEntity<?> createReviewForProduct(@PathVariable("productId") Integer productId, @Valid @RequestBody Reviews newReview) {
         Optional<Products> optionalProduct = productsRepository.findById(productId);
         Products product = optionalProduct.orElseThrow(ProductNotFoundException::new);
         if (product != null){
-            Reviews review = new Reviews();
+            Reviews review = newReview;
+            review.setProduct(product);
             reviewRepository.save(review);
             return new ResponseEntity<>(review,
                     HttpStatus.OK);

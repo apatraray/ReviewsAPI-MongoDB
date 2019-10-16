@@ -6,9 +6,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.test.context.junit4.SpringRunner;
-import javax.persistence.EntityManager;
 import java.util.Optional;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -16,17 +14,7 @@ import static org.junit.Assert.assertNotNull;
 @RunWith(SpringRunner.class)
 @DataJpaTest
 public class CommentsRepositoryTest {
-    @Autowired
-    private EntityManager entityManager;
-    @Autowired private TestEntityManager testEntityManager;
     @Autowired private CommentsRepository commentRepository;
-
-    @Test
-    public void injectedComponentsAreNotNull(){
-        assertNotNull(entityManager);
-        assertNotNull(testEntityManager);
-        assertNotNull(commentRepository);
-    }
 
     @Test
     public void testSaveComments(){

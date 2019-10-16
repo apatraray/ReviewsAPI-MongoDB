@@ -15,8 +15,8 @@ public class ReviewsTest {
         em.getTransaction().begin();
 
         Reviews review = new Reviews();
-        review.setProductId(1);
-        review.setCommentId(4);
+//        review.setProductId(1);
+  //      review.setCommentId(4);
         em.persist(review);
 
         System.err.println("review id "+ review.getId());

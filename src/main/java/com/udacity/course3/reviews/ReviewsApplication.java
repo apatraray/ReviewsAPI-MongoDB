@@ -31,15 +31,15 @@ public class ReviewsApplication {
 			System.err.println("Product1: " + product1);
 
 			Reviews review1 = new Reviews();
-			review1.setProductId(product1.getID());
-			review1 = rRepository.save(review1);
-
+			review1.setProduct(product1);
 			Comments comment1 = new Comments();
 			comment1.setCommentType("very good");
 			comment1.setCommentDetail("works perfect");
+//			comment1.setReview(review1);
 			//save comments in the CommentsRepository
 			comment1 = cRepository.save(comment1);
-			rRepository.updateReviewForComment(product1.getID(), comment1.getId());
+			review1.setComment(comment1);
+			review1 = rRepository.save(review1);
 
 			//create comment2
 			Comments comment2 = new Comments();

@@ -1,13 +1,19 @@
 package com.udacity.course3.reviews.domain.reviews;
 
+import com.udacity.course3.reviews.domain.comments.Comments;
+import com.udacity.course3.reviews.domain.products.Products;
 import javax.persistence.*;
 
+@Embeddable
 @Entity
 @Table(name="reviews")
 public class Reviews {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
+    public Reviews() {
+    }
 
     public Integer getId() {
         return id;
@@ -17,42 +23,44 @@ public class Reviews {
         this.id = id;
     }
 
-    @Column(name="product_id")
-    private Integer productId;
-
-    public Integer getProductId() {
-        return productId;
+    public Products getProduct() {
+        return product;
     }
 
-    public void setProductId(Integer productId) {
-        this.productId = productId;
+    public void setProduct(Products product) {
+        this.product = product;
     }
 
-    public Integer getCommentId() {
-        return commentId;
+    public Comments getComment() {
+        return comment;
     }
 
-    public void setCommentId(Integer commentId) {
-        this.commentId = commentId;
+    public void setComment(Comments comment) {
+        this.comment = comment;
     }
 
-    @Column(name="comment_id")
-    private Integer commentId;
-
-    public Reviews() {
+    public Reviews(Comments comment) {
+        this.comment = comment;
     }
 
-    public Reviews(Integer productId, Integer commentId) {
-        this.productId = productId;
-        this.commentId = commentId;
+    public Reviews(Products product) {
+        this.product = product;
     }
+
+    @ManyToOne
+    @JoinColumn(name = "comment_id")
+    private Comments comment;
+
+    @OneToOne
+    @JoinColumn(name="product_id")
+    private Products product;
 
     @Override
     public String toString() {
         return "Reviews{" +
                 "id=" + id +
-                ", productId=" + productId +
-                ", commentId=" + commentId +
+                ", comment=" + comment +
+                ", product=" + product +
                 '}';
     }
 }
