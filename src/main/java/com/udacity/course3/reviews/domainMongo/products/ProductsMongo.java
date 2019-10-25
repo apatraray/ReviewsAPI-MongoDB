@@ -6,7 +6,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import java.util.List;
 
 @Document("products")
-public class Products {
+public class ProductsMongo {
     @Id
     private String id;
 
@@ -16,9 +16,9 @@ public class Products {
 
     private List<String> reviews;
 
-    public Products(){}
+    public ProductsMongo(){}
 
-    public Products(String productName, String price){
+    public ProductsMongo(String productName, String price){
         this.productName = productName;
         this.price = price;
     }
@@ -53,5 +53,15 @@ public class Products {
 
     public void setReviews(List<String> reviews) {
         this.reviews = reviews;
+    }
+
+    @Override
+    public String toString() {
+        return "ProductsMongo{" +
+                "id='" + id + '\'' +
+                ", productName='" + productName + '\'' +
+                ", price='" + price + '\'' +
+                ", reviews=" + reviews +
+                '}';
     }
 }

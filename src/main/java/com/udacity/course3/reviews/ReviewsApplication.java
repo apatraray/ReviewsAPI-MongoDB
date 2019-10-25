@@ -6,10 +6,17 @@ import com.udacity.course3.reviews.domain.products.Products;
 import com.udacity.course3.reviews.domain.products.ProductsRepository;
 import com.udacity.course3.reviews.domain.reviews.Reviews;
 import com.udacity.course3.reviews.domain.reviews.ReviewsRepository;
+import com.udacity.course3.reviews.domainMongo.products.CommentsMongo;
+import com.udacity.course3.reviews.domainMongo.products.ProductRepositoryMongo;
+import com.udacity.course3.reviews.domainMongo.products.ProductsMongo;
+import com.udacity.course3.reviews.domainMongo.products.ReviewsMongo;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @SpringBootApplication
 public class ReviewsApplication {
@@ -19,9 +26,10 @@ public class ReviewsApplication {
 	}
 
 	@Bean
-	CommandLineRunner initDatabase(ProductsRepository pRepository, CommentsRepository cRepository, ReviewsRepository rRepository) {
+	CommandLineRunner initDatabase(ProductsRepository pRepository, CommentsRepository cRepository,
+								   ReviewsRepository rRepository, ProductRepositoryMongo pmRepository) {
 		return args -> {
-		//save some product reviews
+		//save some product reviews for MySQL
 			Products product1 = new Products();
 			product1.setProductName("smart watches");
 			product1.setPrice("$199");
@@ -35,7 +43,6 @@ public class ReviewsApplication {
 			Comments comment1 = new Comments();
 			comment1.setCommentType("very good");
 			comment1.setCommentDetail("works perfect");
-//			comment1.setReview(review1);
 			//save comments in the CommentsRepository
 			comment1 = cRepository.save(comment1);
 			review1.setComment(comment1);
@@ -46,7 +53,6 @@ public class ReviewsApplication {
 			comment2.setCommentType("good");
 			comment2.setCommentDetail("stylish outlook");
 			comment2 = cRepository.save(comment2);
-//			rRepository.save(review1);
 			rRepository.updateReviewForComment(product1.getID(), comment2.getId());
 
 			Products product2 = new Products();
@@ -71,6 +77,48 @@ public class ReviewsApplication {
 			comment4.setCommentDetail("kids get more involved");
 			comment4 = cRepository.save(comment4);
 			rRepository.updateReviewForComment(product2.getID(), comment4.getId());
+
+
+			//save some product reviews for mongoDB
+			ProductsMongo product3 = new ProductsMongo();
+			product3.setProductName("smart watches");
+			product3.setPrice("$199");
+			List<String> reviews = new ArrayList<>();
+
+			ReviewsMongo review13 = new ReviewsMongo();
+
+			//get a list of comments for review13
+			List<String> comments13 = new ArrayList<>();
+			CommentsMongo comment113 = new CommentsMongo();
+			comment113.setCommentType("very good");
+			comment113.setCommentDetail("works perfect");
+			comments13.add(comment113.getId());
+
+			CommentsMongo comment213 = new CommentsMongo();
+			comment213.setCommentType("good");
+			comment213.setCommentDetail("stylish outlook");
+			comments13.add(comment213.getId());
+
+			review13.setComments(comments13);
+			reviews.add(review13.getId());
+
+			ReviewsMongo review23 = new ReviewsMongo();
+			//get a list of comments for review13
+			List<String> comments23 = new ArrayList<>();
+			CommentsMongo comment123 = new CommentsMongo();
+			comment123.setCommentType("nice");
+			comment123.setCommentDetail("affordable");
+			String comment123Id = comment123.getId();
+			comments23.add(comment123Id);
+
+			review23.setComments(comments23);
+			reviews.add(review23.getId());
+
+			product3.setReviews(reviews);
+			//save products in the ProductsRepositoryMongo
+			product3 = pmRepository.save(product3);
+			System.err.println("Product3: " + product3);
+
 		};
 	}
 

@@ -57,7 +57,7 @@ public class Reviews {
 
     @Override
     public String toString() {
-        return "Reviews{" +
+        return "ReviewsMongo{" +
                 "id=" + id +
                 ", comment=" + comment +
                 ", product=" + product +

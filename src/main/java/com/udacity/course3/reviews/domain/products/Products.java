@@ -64,7 +64,7 @@ public class Products {
 
     @Override
     public String toString() {
-        return "Products{" +
+        return "ProductsMongo{" +
                 "id=" + id +
                 ", productName='" + productName + '\'' +
                 ", price='" + price + '\'' +

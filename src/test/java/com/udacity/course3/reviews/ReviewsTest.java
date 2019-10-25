@@ -6,7 +6,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 public class ReviewsTest {
-    private static final String PERSISTENCE_UNIT_NAME="Reviews";
+    private static final String PERSISTENCE_UNIT_NAME="ReviewsMongo";
     private static EntityManagerFactory factory;
 
     public static void main(String args[]){

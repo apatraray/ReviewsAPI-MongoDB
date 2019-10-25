@@ -7,7 +7,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 public class ProductsTest {
-    private static final String PERSISTENCE_UNIT_NAME="Products";
+    private static final String PERSISTENCE_UNIT_NAME="ProductsMongo";
     private static EntityManagerFactory factory;
 
     public static void main(String args[]){

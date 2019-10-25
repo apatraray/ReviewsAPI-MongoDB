@@ -11,7 +11,7 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 /**
- * Implements the Error controller related to any errors handled by the Reviews API
+ * Implements the Error controller related to any errors handled by the ReviewsMongo API
  */
 @ControllerAdvice
 public class ErrorController extends ResponseEntityExceptionHandler {

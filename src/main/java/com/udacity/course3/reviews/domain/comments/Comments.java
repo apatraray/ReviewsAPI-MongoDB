@@ -1,9 +1,5 @@
 package com.udacity.course3.reviews.domain.comments;
 
-import com.udacity.course3.reviews.domain.products.Products;
-import com.udacity.course3.reviews.domain.reviews.Reviews;
-//import com.udacity.course3.reviews.domain.reviews.Reviews;
-
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -53,7 +49,7 @@ public class Comments implements Serializable
     }
     @Override
     public String toString() {
-        return "Comments{" +
+        return "CommentsMongo{" +
                 "id=" + id +
                 ", commentType='" + commentType + '\'' +
                 ", commentDetail='" + commentDetail + '\'' +
