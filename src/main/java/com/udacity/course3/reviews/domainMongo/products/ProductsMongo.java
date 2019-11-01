@@ -14,7 +14,7 @@ public class ProductsMongo {
 
     private String price;
 
-    private List<String> reviews;
+    private List<String> reviewId;
 
     public ProductsMongo(){}
 
@@ -47,21 +47,11 @@ public class ProductsMongo {
         this.price = price;
     }
 
-    public List<String> getReviews() {
-        return reviews;
+    public List<String> getReviewId() {
+        return reviewId;
     }
 
-    public void setReviews(List<String> reviews) {
-        this.reviews = reviews;
-    }
-
-    @Override
-    public String toString() {
-        return "ProductsMongo{" +
-                "id='" + id + '\'' +
-                ", productName='" + productName + '\'' +
-                ", price='" + price + '\'' +
-                ", reviews=" + reviews +
-                '}';
+    public void setReviewId(List<String> reviewId) {
+        this.reviewId = reviewId;
     }
 }

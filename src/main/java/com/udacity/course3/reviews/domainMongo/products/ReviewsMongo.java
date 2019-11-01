@@ -2,13 +2,19 @@ package com.udacity.course3.reviews.domainMongo.products;
 
 import org.springframework.data.annotation.Id;
 
+import javax.persistence.Embeddable;
+import javax.persistence.Embedded;
+import javax.validation.Valid;
 import java.util.List;
+
 
 public class ReviewsMongo {
     @Id
     private String id;
 
-    private List<String> comments;
+    @Valid
+    @Embedded
+    private List<CommentsMongo> comments;
 
     public ReviewsMongo() {
     }
@@ -21,11 +27,11 @@ public class ReviewsMongo {
         this.id = id;
     }
 
-    public List<String> getComments() {
+    public List<CommentsMongo> getComments() {
         return comments;
     }
 
-    public void setComments(List<String> comments) {
+    public void setComments(List<CommentsMongo> comments) {
         this.comments = comments;
     }
 }

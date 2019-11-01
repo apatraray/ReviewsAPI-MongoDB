@@ -1,7 +1,9 @@
 package com.udacity.course3.reviews.domainMongo.products;
 
+import javax.persistence.Embeddable;
 import javax.persistence.Id;
 
+@Embeddable
 public class CommentsMongo {
     @Id
     private String id;

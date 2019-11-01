@@ -6,6 +6,8 @@ import com.udacity.course3.reviews.domain.products.ProductsRepository;
 import com.udacity.course3.reviews.domain.reviews.ReviewNotFoundException;
 import com.udacity.course3.reviews.domain.reviews.Reviews;
 import com.udacity.course3.reviews.domain.reviews.ReviewsRepository;
+import com.udacity.course3.reviews.domainMongo.products.*;
+import com.udacity.course3.reviews.service.ReviewService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,14 +24,17 @@ import java.util.Optional;
  */
 @RestController
 public class ReviewsController {
+    @Autowired
+    private ReviewService reviewService;
 
-    // TODO: Wire JPA repositories here
     @Autowired
     private ReviewsRepository reviewRepository;
 
     @Autowired
     private ProductsRepository productsRepository;
 
+    @Autowired
+    private ProductRepositoryMongo productRepositoryMongo;
     /**
      * Creates a review for a product.
      * <p>
@@ -49,7 +54,15 @@ public class ReviewsController {
             Reviews review = newReview;
             review.setProduct(product);
             reviewRepository.save(review);
-            return new ResponseEntity<>(review,
+            ReviewsMongo reviewsMongo = new ReviewsMongo();
+            List<CommentsMongo> commentsMongos = new ArrayList<>();
+            CommentsMongo commentsMongo = new CommentsMongo();
+            commentsMongo.setCommentDetail(review.getComment().getCommentDetail());
+            commentsMongo.setCommentType(review.getComment().getCommentType());
+            commentsMongos.add(commentsMongo);
+            reviewsMongo.setComments(commentsMongos);
+            reviewService.save(reviewsMongo);
+            return new ResponseEntity<>(reviewsMongo,
                     HttpStatus.OK);
         }
         throw new ReviewNotFoundException();
@@ -65,16 +78,30 @@ public class ReviewsController {
     public ResponseEntity<List<?>> listReviewsForProduct(@PathVariable("productId") Integer productId) {
         Optional<Products> optionalProduct = productsRepository.findById(productId);
         Products product = optionalProduct.orElseThrow(ProductNotFoundException::new);
-        List<Reviews> newList = new ArrayList<>();
+        List<ReviewsMongo> newList = new ArrayList<>();
 
-        if (product != null){
+        //for reviewRepository
+/*       if (product != null){
+
             List<Integer> reviewIds= reviewRepository.findReviewsForProduct(productId);
             for (int reviewId: reviewIds){
                 Optional<Reviews> optionalReview = reviewRepository.findById(reviewId);
                 Reviews review = optionalReview.orElseThrow(ReviewNotFoundException::new);
                 newList.add(review);
             }
+        }*/
+            //for ReviewRepository mongo
+        if (product != null){
+            Optional<ProductsMongo> productsMongoOptional = productRepositoryMongo.findById(String.valueOf(productId));
+            ProductsMongo productsMongo = productsMongoOptional.orElseThrow(ProductNotFoundException::new);
+            List<String> reviewIds= productsMongo.getReviewId();
+
+            for (String reviewId: reviewIds) {
+                ReviewsMongo newReview = reviewService.findById(reviewId);
+                newList.add(newReview);
+            }
         }
+
         return new ResponseEntity<>(newList,
                 HttpStatus.OK);
     }
