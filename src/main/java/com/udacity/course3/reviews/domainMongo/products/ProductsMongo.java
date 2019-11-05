@@ -5,7 +5,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.List;
 
-@Document("products")
+@Document(collection="productsMongo")
 public class ProductsMongo {
     @Id
     private String id;
@@ -53,5 +53,15 @@ public class ProductsMongo {
 
     public void setReviewId(List<String> reviewId) {
         this.reviewId = reviewId;
+    }
+
+    @Override
+    public String toString() {
+        return "ProductsMongo{" +
+                "id='" + id + '\'' +
+                ", productName='" + productName + '\'' +
+                ", price='" + price + '\'' +
+                ", reviewId=" + reviewId +
+                '}';
     }
 }

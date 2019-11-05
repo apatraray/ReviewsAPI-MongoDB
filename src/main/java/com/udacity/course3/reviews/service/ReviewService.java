@@ -1,12 +1,11 @@
 package com.udacity.course3.reviews.service;
 
-import com.udacity.course3.reviews.domain.products.ProductsRepository;
 import com.udacity.course3.reviews.domain.reviews.ReviewNotFoundException;
-import com.udacity.course3.reviews.domainMongo.products.ProductRepositoryMongo;
 import com.udacity.course3.reviews.domainMongo.products.ReviewRepositoryMongo;
 import com.udacity.course3.reviews.domainMongo.products.ReviewsMongo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -15,17 +14,9 @@ public class ReviewService {
     @Autowired
     private ReviewRepositoryMongo reviewMongoRepository;
 
-    @Autowired
-    private ProductRepositoryMongo productMongoRepository;
 
-    @Autowired
-    private ProductsRepository repository;
-
-    public ReviewService(ReviewRepositoryMongo reviewMongoRepository,
-                         ProductsRepository repository, ProductRepositoryMongo productMongoRepository) {
+    public ReviewService(ReviewRepositoryMongo reviewMongoRepository) {
         this.reviewMongoRepository = reviewMongoRepository;
-        this.repository = repository;
-        this.productMongoRepository = productMongoRepository;
     }
 
     /**

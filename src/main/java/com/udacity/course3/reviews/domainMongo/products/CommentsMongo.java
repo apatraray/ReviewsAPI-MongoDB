@@ -1,11 +1,14 @@
 package com.udacity.course3.reviews.domainMongo.products;
 
 import javax.persistence.Embeddable;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Embeddable
 public class CommentsMongo {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
 
     private String commentType;
@@ -37,5 +40,14 @@ public class CommentsMongo {
 
     public void setCommentDetail(String commentDetail) {
         this.commentDetail = commentDetail;
+    }
+
+    @Override
+    public String toString() {
+        return "CommentsMongo{" +
+                "id='" + id + '\'' +
+                ", commentType='" + commentType + '\'' +
+                ", commentDetail='" + commentDetail + '\'' +
+                '}';
     }
 }

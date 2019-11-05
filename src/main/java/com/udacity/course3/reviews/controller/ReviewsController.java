@@ -6,13 +6,15 @@ import com.udacity.course3.reviews.domain.products.ProductsRepository;
 import com.udacity.course3.reviews.domain.reviews.ReviewNotFoundException;
 import com.udacity.course3.reviews.domain.reviews.Reviews;
 import com.udacity.course3.reviews.domain.reviews.ReviewsRepository;
-import com.udacity.course3.reviews.domainMongo.products.*;
+import com.udacity.course3.reviews.domainMongo.products.CommentsMongo;
+import com.udacity.course3.reviews.domainMongo.products.ProductRepositoryMongo;
+import com.udacity.course3.reviews.domainMongo.products.ProductsMongo;
+import com.udacity.course3.reviews.domainMongo.products.ReviewsMongo;
 import com.udacity.course3.reviews.service.ReviewService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.client.HttpServerErrorException;
 
 import javax.validation.Valid;
 import java.util.ArrayList;
@@ -80,16 +82,6 @@ public class ReviewsController {
         Products product = optionalProduct.orElseThrow(ProductNotFoundException::new);
         List<ReviewsMongo> newList = new ArrayList<>();
 
-        //for reviewRepository
-/*       if (product != null){
-
-            List<Integer> reviewIds= reviewRepository.findReviewsForProduct(productId);
-            for (int reviewId: reviewIds){
-                Optional<Reviews> optionalReview = reviewRepository.findById(reviewId);
-                Reviews review = optionalReview.orElseThrow(ReviewNotFoundException::new);
-                newList.add(review);
-            }
-        }*/
             //for ReviewRepository mongo
         if (product != null){
             Optional<ProductsMongo> productsMongoOptional = productRepositoryMongo.findById(String.valueOf(productId));
