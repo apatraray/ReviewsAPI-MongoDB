@@ -5,19 +5,4 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ReviewsRepository  extends JpaRepository<Reviews, Integer> {
-/*
-    @Transactional
-    @Modifying
-    @Query("update Reviews r set r.comment.id = :commentId where r.product.id = :productId")
-    void updateReviewForComment(Integer productId, Integer commentId);
-
-    @Query("select r.id from Reviews r where r.product.id = :productId")
-    List<Integer> findReviewsForProduct(Integer productId);
-
-    @Query("select r.product.id from Reviews r where r.id=:reviewId")
-    Integer findProductByReviewId(Integer reviewId);
-
-    @Query("select r.comment.id, r.product.id, r.id from Reviews r where r.product.id=:productId")
-    List<Integer> findCommentsForProduct(Integer productId);
-*/
 }

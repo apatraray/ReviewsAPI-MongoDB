@@ -73,6 +73,5 @@ public class ProductsController {
             newList.add(product);
         }
         return newList;
-        //throw new HttpServerErrorException(HttpStatus.NOT_IMPLEMENTED);
     }
 }

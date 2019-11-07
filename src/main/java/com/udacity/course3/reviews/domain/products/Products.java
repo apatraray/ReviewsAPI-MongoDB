@@ -29,17 +29,7 @@ public class Products {
     }
 
     @OneToMany(cascade=ALL, fetch = FetchType.EAGER, mappedBy = "product")
-//    @JoinTable(name="reviews", joinColumns=@JoinColumn(name="product_id"), inverseJoinColumns=@JoinColumn(name="comment_id"))
     private List<Reviews> reviews = new ArrayList<>();
-
-/*    public List<Comments> getComments() {
-        return comments;
-    }
-
-    public void setComments(List<Comments> comments) {
-        this.comments = comments;
-    }
-*/
 
     public List<Reviews> getReviews() {
         return reviews;

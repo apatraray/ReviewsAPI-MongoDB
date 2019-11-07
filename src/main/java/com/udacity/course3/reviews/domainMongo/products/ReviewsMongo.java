@@ -1,13 +1,11 @@
 package com.udacity.course3.reviews.domainMongo.products;
 
 import org.springframework.data.annotation.Id;
-
 import javax.persistence.Embedded;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.validation.Valid;
 import java.util.List;
-
 
 public class ReviewsMongo {
     @Id
