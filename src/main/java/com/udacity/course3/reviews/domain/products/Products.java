@@ -1,9 +1,11 @@
 package com.udacity.course3.reviews.domain.products;
 
-import com.udacity.course3.reviews.domain.comments.Comments;
+import com.udacity.course3.reviews.domain.reviews.Reviews;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+
 import static javax.persistence.CascadeType.ALL;
 
 @Entity
@@ -26,16 +28,25 @@ public class Products {
         this.price = price;
     }
 
-    @OneToMany(cascade=ALL, fetch = FetchType.EAGER)
-    @JoinTable(name="reviews", joinColumns=@JoinColumn(name="product_id"), inverseJoinColumns=@JoinColumn(name="comment_id"))
-    private List<Comments> comments = new ArrayList<>();
+    @OneToMany(cascade=ALL, fetch = FetchType.EAGER, mappedBy = "product")
+//    @JoinTable(name="reviews", joinColumns=@JoinColumn(name="product_id"), inverseJoinColumns=@JoinColumn(name="comment_id"))
+    private List<Reviews> reviews = new ArrayList<>();
 
-    public List<Comments> getComments() {
+/*    public List<Comments> getComments() {
         return comments;
     }
 
     public void setComments(List<Comments> comments) {
         this.comments = comments;
+    }
+*/
+
+    public List<Reviews> getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(List<Reviews> reviews) {
+        this.reviews = reviews;
     }
 
     public Integer getID() {

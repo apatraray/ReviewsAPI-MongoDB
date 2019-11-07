@@ -1,5 +1,7 @@
 package com.udacity.course3.reviews.domain.comments;
 
+import com.udacity.course3.reviews.domain.reviews.Reviews;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -47,6 +49,19 @@ public class Comments implements Serializable
         this.commentType = commentType;
         this.commentDetail = commentDetail;
     }
+
+    @ManyToOne
+    @JoinColumn(name="review_id")
+    private Reviews reviews;
+
+    public Reviews getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(Reviews reviews) {
+        this.reviews = reviews;
+    }
+
     @Override
     public String toString() {
         return "CommentsMongo{" +

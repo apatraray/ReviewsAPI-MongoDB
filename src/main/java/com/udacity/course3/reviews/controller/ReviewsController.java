@@ -59,8 +59,8 @@ public class ReviewsController {
             ReviewsMongo reviewsMongo = new ReviewsMongo();
             List<CommentsMongo> commentsMongos = new ArrayList<>();
             CommentsMongo commentsMongo = new CommentsMongo();
-            commentsMongo.setCommentDetail(review.getComment().getCommentDetail());
-            commentsMongo.setCommentType(review.getComment().getCommentType());
+      //      commentsMongo.setCommentDetail(review.getComment().getCommentDetail());
+        //    commentsMongo.setCommentType(review.getComment().getCommentType());
             commentsMongos.add(commentsMongo);
             reviewsMongo.setComments(commentsMongos);
             reviewService.save(reviewsMongo);

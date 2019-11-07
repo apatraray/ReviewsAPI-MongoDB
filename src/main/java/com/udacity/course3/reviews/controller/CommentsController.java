@@ -47,7 +47,8 @@ public class CommentsController {
 
         if (review != null){
             Comments comment = newComment;
-            review.setComment(comment);
+            comment.setReviews(review);
+            //review .setComment(comment);
             commentRepository.save(comment);
                 return new ResponseEntity<>(comment,
                         HttpStatus.OK);
@@ -66,10 +67,12 @@ public class CommentsController {
      */
     @RequestMapping(value = "/reviews/{reviewId}", method = RequestMethod.GET)
     public ResponseEntity<List<?>> listCommentsForReview(@PathVariable("reviewId") Integer reviewId) {
-        Integer productId = reviewRepository.findProductByReviewId(reviewId);
+        Optional<Reviews> optionalReview = reviewRepository.findById(reviewId);
+        Reviews review = optionalReview.orElseThrow(ReviewNotFoundException::new);
+
         List<Comments> newList = new ArrayList<>();
 
-        List<Integer> commentIds= reviewRepository.findCommentsForProduct(productId);
+        List<Integer> commentIds= commentRepository.findCommentsForReview(reviewId);
         for (int commentId: commentIds){
             Optional<Comments> optionalComment = commentRepository.findById(commentId);
             Comments comment = optionalComment.orElseThrow(CommentNotFoundException::new);
