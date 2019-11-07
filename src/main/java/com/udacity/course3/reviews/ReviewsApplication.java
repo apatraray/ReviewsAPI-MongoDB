@@ -1,11 +1,5 @@
 package com.udacity.course3.reviews;
 
-import com.udacity.course3.reviews.domain.comments.Comments;
-import com.udacity.course3.reviews.domain.comments.CommentsRepository;
-import com.udacity.course3.reviews.domain.products.Products;
-import com.udacity.course3.reviews.domain.products.ProductsRepository;
-import com.udacity.course3.reviews.domain.reviews.Reviews;
-import com.udacity.course3.reviews.domain.reviews.ReviewsRepository;
 import com.udacity.course3.reviews.domainMongo.products.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -30,7 +24,7 @@ public class ReviewsApplication {
 	CommandLineRunner initDatabase(ProductsRepository pRepository, CommentsRepository cRepository,
 								   ReviewsRepository rRepository, ProductRepositoryMongo pmRepository,
 								   ReviewRepositoryMongo rmRepository, CommentRepositoryMongo cmRepository) {
-*/
+
 		@Bean
 		CommandLineRunner initDatabase(ProductsRepository pRepository, CommentsRepository cRepository,
 									   ReviewsRepository rRepository) {
@@ -91,7 +85,7 @@ public class ReviewsApplication {
 
 			};
 		}
-
+*/
 	@Bean
 	CommandLineRunner initDatabaseMongo(ProductRepositoryMongo pmRepository,
 								   ReviewRepositoryMongo rmRepository, CommentRepositoryMongo cmRepository) {

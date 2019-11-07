@@ -1,6 +1,6 @@
 
-INSERT INTO products (ID, product_name, product_price) VALUES (1, "smart watches", "$199", 1);
-INSERT INTO products (ID, product_name, product_price, review_id) VALUES (2, "Lego toys", "$50", 2);
+INSERT INTO products (ID, product_name, product_price) VALUES (1, "smart watches", "$199");
+INSERT INTO products (ID, product_name, product_price) VALUES (2, "Lego toys", "$50");
 
 INSERT INTO reviews (ID, product_id) VALUES (1, 1);
 INSERT INTO reviews (ID, product_id) VALUES (2, 2);
